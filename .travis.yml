@@ -48,7 +48,7 @@ before_script:
   # establish drupal package put in place the right way
   - sudo mkdir -p /var/www
   - sudo chown travis:travis /var/www
-  - drush dl drupal --destination=/var/www --default-major=7 --drupal-project-rename=drupal --y
+  - git clone https://github.com/kporras07/dccr-2015.git drupal
   # get drush recipes setup functions
   - sudo chown -R travis:travis ~/.drush
   - cd ~/.drush/
@@ -59,9 +59,9 @@ script:
   # stand up drupal
   - cd /var/www/drupal
   - drush site-install -y --db-url=mysql://root@localhost/travisdb --db-su='root' --db-su-pw=''
-  # @todo put the other stuff here to build but this should give us a site
-  - cd /var/www/drupal/sites/all/modules
-  - git clone https://github.com/drupalprojects/elmsmedia.git elmsmedia
+  - drush en -y dccr
+  - drush updb -y && drush fra -y
+  - drush cc all
 after_script:
   - drush status
 
