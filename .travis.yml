@@ -48,7 +48,7 @@ before_script:
   # establish drupal package put in place the right way
   - sudo mkdir -p /var/www
   - sudo chown travis:travis /var/www
-  - git clone https://github.com/kporras07/dccr-2015.git drupal
+  - git clone https://github.com/kporras07/dccr-2015.git /var/www/drupal
 
 script:
   # stand up drupal
